@@ -90,7 +90,9 @@ tidyFeatureDataSet <- cbind(subjects, activities, subsetFeatureData)
 #?ddp
 # 5B. save the data set in step 5 into a text file to be uploaded
 #
-write.table(tidyFeatureDataSet, file="tidydata.txt", row.name=FALSE)
+avgDataSet <- tidyFeatureDataSet %>% group_by(subject, activity) %>% summarize_each(c("mean"))
+
+write.table(avgDataSet, file="tidydata.txt", row.name=FALSE)
 
 # 
 #http://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository#_git_basics_chapter
